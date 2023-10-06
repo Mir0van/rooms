@@ -1,5 +1,10 @@
 // Colors
-// ---------------------------------
+
+$color-razzmatazz:                  #f91155;
+$color-wild-watermelon:             #ff4b77;
+$color-crimson:                     #d8003f;
+$color-vulcan:                      #3c3e43;
+$color-coral:                       #ff7647;
 
 // Default
 
@@ -15,7 +20,10 @@ $color-torch-red:                   #ff1553;
 
 // Gradient
 
-$black-to-right:                    linear-gradient(90deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 75%);
+$black-to-right:                              linear-gradient(90deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 75%);
+$color-linear-gradient:                       linear-gradient(180deg, rgba(222, 237, 255, 0.6) 0%, rgba(166, 204, 250, 0.5) 100%);
+$color-linear-gradient-secondary:             linear-gradient(180deg, rgba(10, 34, 64, 0.1) 0%, #0a2240 100%);
+$color-linear-gradient-tertiary:              linear-gradient(69deg, rgba(170, 203, 240, 0.25) 11.33%, rgba(170, 203, 240, 0.75) 64.1%);
 
 // Typography
 // ---------------------------------
@@ -27,7 +35,8 @@ $fz-default:                        16px;
 // https://www.artlebedev.ru/kovodstvo/sections/159/#13
 $ff-rouble:                         "Rouble", "Arial", sans-serif;
 
-$ff-placeholder:                    "Placeholder", "Arial", sans-serif;
+$ff-roboto:                         "Roboto", "Arial", sans-serif;
+$ff-open-sans:                      "Open Sans", "Arial", sans-serif;
 
 // Animation
 // ---------------------------------
