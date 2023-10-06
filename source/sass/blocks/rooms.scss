@@ -1,0 +1,38 @@
+.rooms {
+  padding-bottom: 26px;
+
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $color-linear-gradient, url("../img/svg/background-overlay.svg") no-repeat center / cover;
+    z-index: -1;
+  }
+}
+
+.rooms__list {
+  @include list-reset;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 32px;
+  row-gap: 37px;
+  justify-content: start;
+
+  @include vp-1279 {
+    justify-content: space-between;
+    column-gap: 28px;
+  }
+
+  @include vp-767 {
+    row-gap: 32px;
+  }
+}
+
+.rooms__item {
+  @include vp-1279 {
+    flex-grow: 1;
+  }
+}

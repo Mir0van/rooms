@@ -15,6 +15,15 @@
   main {
     flex-grow: 1;
   }
+
+  // my custom for project rooms and prices
+  &--centred {
+    justify-content: center;
+
+    main {
+      flex-grow: 0;
+    }
+  }
 }
 
 .rouble {
