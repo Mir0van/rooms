@@ -683,12 +683,8 @@ button,
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  -webkit-transition: opacity 0.3s ease;
-  transition: opacity 0.3s ease;
-}
-
-.btn--red {
-  background-color: #ff1553;
+  -webkit-transition: background-color 0.3s ease, color 0.3s ease, outline ease;
+  transition: background-color 0.3s ease, color 0.3s ease, outline ease;
 }
 
 .btn:disabled {
@@ -696,8 +692,15 @@ button,
   pointer-events: none;
 }
 
-.btn.focus-visible:focus {
-  opacity: 0.8;
+.btn:active {
+  background-color: #d8003f;
+  color: #f9637c;
+}
+
+.btn:focus-visible {
+  outline: 1px solid #ffffff;
+  background-color: #d8003f;
+  outline-offset: -1px;
 }
 
 .main-header {
@@ -774,6 +777,7 @@ button,
   display: grid;
   -ms-grid-rows: 1fr 74px;
   grid-template-rows: 1fr 74px;
+  position: relative;
 }
 
 .room__description-wrapper {
@@ -792,13 +796,45 @@ button,
   overflow-y: auto;
 }
 
+.room__title-link {
+  -ms-flex-item-align: start;
+  -ms-grid-row-align: start;
+  align-self: start;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.room__title-link::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0);
+  z-index: 1;
+  -webkit-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+
+.room__title-link:active .room__title {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.room__title-link:active::after {
+  background-color: rgba(255, 255, 255, 0);
+}
+
 .room__title {
   font-weight: 700;
   font-size: 24px;
   line-height: 1.33;
   color: #ffffff;
   margin: 0;
-  margin-bottom: 10px;
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+  position: relative;
+  z-index: 2;
 }
 
 .room__description {
@@ -840,7 +876,7 @@ button,
   -ms-grid-column: 1;
   -ms-grid-column-span: 1;
   grid-area: 1/1/2/2;
-  margin-bottom: 9px;
+  margin-bottom: 8px;
 }
 
 .room__price-wrapper {
@@ -876,12 +912,12 @@ button,
   -ms-flex-pack: center;
   justify-content: center;
   width: 180px;
-  margin-top: 2px;
+  margin-bottom: 2px;
   -ms-grid-row: 1;
   -ms-grid-row-span: 2;
   grid-area: 1/2/3/-1;
-  -ms-grid-row-align: start;
-  align-self: start;
+  -ms-grid-row-align: end;
+  align-self: end;
   word-break: break-all;
 }
 
@@ -1026,8 +1062,7 @@ button,
     -ms-grid-row-span: 1;
     grid-area: 3/1/4/-1;
     width: 100%;
-    -ms-grid-row-align: end;
-    align-self: end;
+    margin-bottom: 0;
   }
 }
 
@@ -1101,6 +1136,10 @@ button,
 
 @media (hover: hover) {
   .btn:hover:not(.focus-visible) {
-    opacity: 0.8;
+    background-color: #d8003f;
+  }
+
+  .room__title-link:hover::after {
+    background-color: #ffffff;
   }
 }
