@@ -715,15 +715,6 @@ button,
   padding-bottom: 26px;
 }
 
-.rooms::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100vh;
-}
-
 .rooms__list {
   margin: 0;
   padding: 0;
