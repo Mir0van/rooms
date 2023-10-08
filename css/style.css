@@ -597,6 +597,18 @@ button,
   justify-content: center;
 }
 
+.wrapper--centred::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(222, 237, 255, 0.6)), to(rgba(166, 204, 250, 0.5))), url("../img/svg/background-overlay.svg") no-repeat 53.5% 50%/cover;
+  background: linear-gradient(180deg, rgba(222, 237, 255, 0.6) 0%, rgba(166, 204, 250, 0.5) 100%), url("../img/svg/background-overlay.svg") no-repeat 53.5% 50%/cover;
+  z-index: -1;
+}
+
 .wrapper--centred main {
   -webkit-box-flex: 0;
   -ms-flex-positive: 0;
@@ -710,9 +722,6 @@ button,
   left: 0;
   right: 0;
   height: 100vh;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(222, 237, 255, 0.6)), to(rgba(166, 204, 250, 0.5))), url("../img/svg/background-overlay.svg") no-repeat 53.5% 50%/cover;
-  background: linear-gradient(180deg, rgba(222, 237, 255, 0.6) 0%, rgba(166, 204, 250, 0.5) 100%), url("../img/svg/background-overlay.svg") no-repeat 53.5% 50%/cover;
-  z-index: -1;
 }
 
 .rooms__list {
@@ -1069,17 +1078,17 @@ button,
 }
 
 @media (max-width: 1279px) {
+  .wrapper--centred::before {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(222, 237, 255, 0.6)), to(rgba(166, 204, 250, 0.5))), url("../img/svg/background-overlay-tablet.svg") no-repeat center/cover;
+    background: linear-gradient(180deg, rgba(222, 237, 255, 0.6) 0%, rgba(166, 204, 250, 0.5) 100%), url("../img/svg/background-overlay-tablet.svg") no-repeat center/cover;
+  }
+
   .container {
     max-width: 700px;
   }
 
   .main-header {
     padding-top: 15px;
-  }
-
-  .rooms::before {
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(222, 237, 255, 0.6)), to(rgba(166, 204, 250, 0.5))), url("../img/svg/background-overlay-tablet.svg") no-repeat center/cover;
-    background: linear-gradient(180deg, rgba(222, 237, 255, 0.6) 0%, rgba(166, 204, 250, 0.5) 100%), url("../img/svg/background-overlay-tablet.svg") no-repeat center/cover;
   }
 
   .rooms__list {
@@ -1142,6 +1151,11 @@ button,
 }
 
 @media (max-width: 767px) {
+  .wrapper--centred::before {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(222, 237, 255, 0.6)), to(rgba(166, 204, 250, 0.5))), url("../img/svg/background-overlay-mobile.svg") no-repeat center/cover;
+    background: linear-gradient(180deg, rgba(222, 237, 255, 0.6) 0%, rgba(166, 204, 250, 0.5) 100%), url("../img/svg/background-overlay-mobile.svg") no-repeat center/cover;
+  }
+
   .container {
     max-width: 288px;
   }
@@ -1153,11 +1167,6 @@ button,
 
   .main-header__wrapper h1 {
     font-size: 24px;
-  }
-
-  .rooms::before {
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(222, 237, 255, 0.6)), to(rgba(166, 204, 250, 0.5))), url("../img/svg/background-overlay-mobile.svg") no-repeat center/cover;
-    background: linear-gradient(180deg, rgba(222, 237, 255, 0.6) 0%, rgba(166, 204, 250, 0.5) 100%), url("../img/svg/background-overlay-mobile.svg") no-repeat center/cover;
   }
 
   .rooms__list {
