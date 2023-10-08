@@ -37,9 +37,7 @@
   position: relative;
 
   // fix overflow for ios
-  // clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
   transform: translateZ(0);
-  // isolation: isolate;
 
   @include vp-1279 {
     width: 336px;
@@ -74,8 +72,6 @@
   height: 100%;
   display: grid;
   grid-template-rows: 1fr 74px;
-  // подумать про резину
-  // grid-template-rows: 1fr auto;
 
   position: relative;
 
@@ -332,7 +328,6 @@
   bottom: 0;
   z-index: -1;
   background-color: $color-st-tropaz;
-  // border-radius: 12px;
 
   &::after {
     content: "";
@@ -342,14 +337,11 @@
     right: 0;
     bottom: 0;
     background-image: $color-linear-gradient-secondary;
-    //del
-    // border-radius: 12px;
   }
 
   img {
     object-fit: cover;
     height: 100%;
     width: 100%;
-    // border-radius: 12px;
   }
 }

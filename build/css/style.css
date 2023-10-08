@@ -577,8 +577,6 @@ button,
   -ms-flex-direction: column;
   flex-direction: column;
   min-height: 100vh;
-  /* stylelint-disable-next-line */
-  min-height: calc(100 * var(--vh, 1vh));
 }
 
 .wrapper .header,
@@ -597,6 +595,18 @@ button,
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+}
+
+.wrapper--centred::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(222, 237, 255, 0.6)), to(rgba(166, 204, 250, 0.5))), url("../img/svg/background-overlay.svg") no-repeat 53.5% 50%/cover;
+  background: linear-gradient(180deg, rgba(222, 237, 255, 0.6) 0%, rgba(166, 204, 250, 0.5) 100%), url("../img/svg/background-overlay.svg") no-repeat 53.5% 50%/cover;
+  z-index: -1;
 }
 
 .wrapper--centred main {
@@ -712,9 +722,6 @@ button,
   left: 0;
   right: 0;
   height: 100vh;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(222, 237, 255, 0.6)), to(rgba(166, 204, 250, 0.5))), url("../img/svg/background-overlay.svg") no-repeat 53.5% 50%/cover;
-  background: linear-gradient(180deg, rgba(222, 237, 255, 0.6) 0%, rgba(166, 204, 250, 0.5) 100%), url("../img/svg/background-overlay.svg") no-repeat 53.5% 50%/cover;
-  z-index: -1;
 }
 
 .rooms__list {
@@ -1047,7 +1054,14 @@ button,
   pointer-events: all;
 }
 
-.motivation .motivation__text {
+.motivation img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+}
+
+.motivation__text {
   font-weight: 700;
   font-size: 14px;
   line-height: 1.5;
@@ -1059,64 +1073,22 @@ button,
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  padding-left: 17px;
-  padding-right: 4px;
+  padding: 4px 4px 5px 17px;
   border-radius: 3px 0 0 3px;
 }
 
-/* @mixin hover-focus {
-    @media (hover: hover) {
-      &:hover:not(.focus-visible) {
-        @content;
-      }
-    }
-
-    &.focus-visible:focus {
-      @content;
-    }
-  }
-*/
-
-/*  @include hover-focus {
-      opacity: 0.8;
-    }
-*/
-
-/*@mixin hover {
-    @media (hover: hover) {
-      &:hover:not(.focus-visible) {
-        @content;
-      }
-    }
-  }
-*/
-
-/*@mixin focus {
-    &.focus-visible:focus {
-      @content;
-    }
-  }
-*/
-
-/*@mixin active {
-    &.focus-visible:active {
-      @content;
-    }
-  }
-*/
-
 @media (max-width: 1279px) {
+  .wrapper--centred::before {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(222, 237, 255, 0.6)), to(rgba(166, 204, 250, 0.5))), url("../img/svg/background-overlay-tablet.svg") no-repeat center/cover;
+    background: linear-gradient(180deg, rgba(222, 237, 255, 0.6) 0%, rgba(166, 204, 250, 0.5) 100%), url("../img/svg/background-overlay-tablet.svg") no-repeat center/cover;
+  }
+
   .container {
     max-width: 700px;
   }
 
   .main-header {
     padding-top: 15px;
-  }
-
-  .rooms::before {
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(222, 237, 255, 0.6)), to(rgba(166, 204, 250, 0.5))), url("../img/svg/background-overlay-tablet.svg") no-repeat center/cover;
-    background: linear-gradient(180deg, rgba(222, 237, 255, 0.6) 0%, rgba(166, 204, 250, 0.5) 100%), url("../img/svg/background-overlay-tablet.svg") no-repeat center/cover;
   }
 
   .rooms__list {
@@ -1179,6 +1151,11 @@ button,
 }
 
 @media (max-width: 767px) {
+  .wrapper--centred::before {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(222, 237, 255, 0.6)), to(rgba(166, 204, 250, 0.5))), url("../img/svg/background-overlay-mobile.svg") no-repeat center/cover;
+    background: linear-gradient(180deg, rgba(222, 237, 255, 0.6) 0%, rgba(166, 204, 250, 0.5) 100%), url("../img/svg/background-overlay-mobile.svg") no-repeat center/cover;
+  }
+
   .container {
     max-width: 288px;
   }
@@ -1190,11 +1167,6 @@ button,
 
   .main-header__wrapper h1 {
     font-size: 24px;
-  }
-
-  .rooms::before {
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(222, 237, 255, 0.6)), to(rgba(166, 204, 250, 0.5))), url("../img/svg/background-overlay-mobile.svg") no-repeat center/cover;
-    background: linear-gradient(180deg, rgba(222, 237, 255, 0.6) 0%, rgba(166, 204, 250, 0.5) 100%), url("../img/svg/background-overlay-mobile.svg") no-repeat center/cover;
   }
 
   .rooms__list {
