@@ -17,7 +17,7 @@ const onbuttonReservationClick = (evt) => {
 };
 
 const onRoomMouseleave = (evt, buttonReservation) => {
-  const room = evt.currentTarget;
+  const room = evt.currentTarget.parentNode;
 
   if (buttonReservation.classList.contains('is-pressed')) {
     room.classList.add('is-reserved');
@@ -29,7 +29,8 @@ const onRoomClick = (evt, buttonReservation) => {
     return;
   }
 
-  const room = evt.currentTarget;
+  const roomChild = evt.currentTarget;
+  const room = roomChild.parentNode;
 
   if (room.classList.contains('is-reserved')) {
     room.classList.remove('is-reserved');
@@ -44,11 +45,12 @@ const initReservation = () => {
 
   rooms.forEach((room) => {
     const buttonReservation = room.querySelector('[data-button-book]');
+    const roomChild = room.children[0];
 
-    room.addEventListener('mouseleave', (evt) => {
+    roomChild.addEventListener('mouseleave', (evt) => {
       onRoomMouseleave(evt, buttonReservation);
     });
-    room.addEventListener('click', (evt) => {
+    roomChild.addEventListener('click', (evt) => {
       onRoomClick(evt, buttonReservation);
     });
     buttonReservation.addEventListener('click', onbuttonReservationClick);
