@@ -1047,7 +1047,14 @@ button,
   pointer-events: all;
 }
 
-.motivation .motivation__text {
+.motivation img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+}
+
+.motivation__text {
   font-weight: 700;
   font-size: 14px;
   line-height: 1.5;
@@ -1059,8 +1066,7 @@ button,
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  padding-left: 17px;
-  padding-right: 4px;
+  padding: 4px 4px 5px 17px;
   border-radius: 3px 0 0 3px;
 }
 
