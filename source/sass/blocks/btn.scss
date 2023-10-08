@@ -13,19 +13,24 @@
   border-radius: 5px;
   cursor: pointer;
 
-  transition: opacity $trans-default;
+  transition: background-color $trans-default, color $trans-default, outline $trans-default, opacity $trans-default;
 
-  &--red {
-    background-color: $color-torch-red;
+  &--disabled {
+    opacity: 0.6;
   }
 
-  &:disabled {
-    opacity: 0.5;
-
-    pointer-events: none;
+  @include hover {
+    background-color: $color-crimson;
   }
 
-  @include hover-focus {
-    opacity: 0.8;
+  &:active {
+    background-color: $color-crimson;
+    color: $color-brink-pink;
+  }
+
+  &:focus-visible {
+    outline: 1px solid $color-default-white;
+    background-color: $color-crimson;
+    outline-offset: -1px;
   }
 }

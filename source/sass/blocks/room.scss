@@ -1,6 +1,30 @@
 .room {
   display: flex;
   justify-content: center;
+  position: relative;
+
+  &:not(.is-reserved) {
+    @include hover {
+      .room__motivation {
+        display: flex;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+      }
+    }
+  }
+
+  &.is-reserved {
+    .room__wrapper {
+      pointer-events: none;
+
+      &::before {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+      }
+    }
+  }
 }
 
 .room__wrapper {
@@ -11,6 +35,11 @@
   border-radius: 12px;
   overflow: hidden;
   position: relative;
+
+  // fix overflow for ios
+  // clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
+  transform: translateZ(0);
+  // isolation: isolate;
 
   @include vp-1279 {
     width: 336px;
@@ -23,12 +52,32 @@
     height: 347px;
     padding: 21px;
   }
+
+  &::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb($color-default-white, 40%);
+    border-radius: 12px;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity $trans-default, visibility $trans-default;
+  }
 }
 
 .room__content-wrapper {
   height: 100%;
   display: grid;
   grid-template-rows: 1fr 74px;
+  // подумать про резину
+  // grid-template-rows: 1fr auto;
+
+  position: relative;
 
   @include vp-1279 {
     grid-template-rows: 1fr 136px;
@@ -49,10 +98,58 @@
   overflow-y: auto;
 }
 
+.room__title-link {
+  align-self: start;
+
+  margin-bottom: 10px;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: rgb($color-default-white, 0);
+    z-index: 1;
+    transition: background-color $trans-default;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      &::after {
+        background-color: $color-default-white;
+      }
+    }
+  }
+
+  &:active {
+    .room__title {
+      color: rgb($color-default-white, 50%);
+    }
+
+    &::after {
+      background-color: rgb($color-default-white, 0);
+    }
+  }
+
+  &:focus-visible {
+    outline: none;
+
+    &::after {
+      background-color: $color-default-white;
+    }
+  }
+}
+
 .room__title {
   @include font-values(700, 24px, 1.33, $color-default-white);
   margin: 0;
-  margin-bottom: 10px;
+  transition: color $trans-default;
+
+  position: relative;
+  z-index: 2;
 
   @include vp-767 {
     font-size: 20px;
@@ -95,7 +192,7 @@
   @include font-values(700, 16px, 1, $color-default-white);
   font-family: $ff-open-sans;
   grid-area: 1 / 1 / 2 / 2;
-  margin-bottom: 9px;
+  margin-bottom: 8px;
 
   @include vp-1279 {
     grid-area: 1 / 1 / 2 / -1;
@@ -142,30 +239,89 @@
 .room__button {
   justify-content: center;
 
-  width: 180px;
-  margin-top: 2px;
   grid-area: 1 / 2 / 3 / -1;
-  align-self: start;
+  align-self: end;
+
+  width: 180px;
+  margin-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+
   word-break: break-all;
 
   @include vp-1279 {
     grid-area: 3 / 1 / 4 / -1;
     width: 100%;
-    align-self: end;
+    margin-bottom: 0;
   }
 
   @include vp-767 {
     font-size: 14px;
     padding-top: 8px;
   }
+
+  &.is-pressed {
+    opacity: 0.6;
+  }
 }
 
 .room__reservation-info {
-  display: none;
+  @include font-values(400, 14px, 1.5, $color-default-white);
+  font-family: $ff-open-sans;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: $color-vulcan;
+  border-radius: 0 0 12px 12px;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 97px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity $trans-default, visibility $trans-default;
+
+  @include vp-1279 {
+    height: 161px;
+  }
+
+  @include vp-767 {
+    height: 150px;
+  }
+}
+
+.is-reserved {
+  .room__reservation-info {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+  }
+}
+
+.room__reservation-link {
+  color: $color-wild-watermelon;
+
+  @media (hover: hover) {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &:active {
+    text-decoration: none;
+    color: $color-illusion;
+  }
 }
 
 .room__motivation {
-  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .room__image-wrapper {
@@ -176,6 +332,7 @@
   bottom: 0;
   z-index: -1;
   background-color: $color-st-tropaz;
+  // border-radius: 12px;
 
   &::after {
     content: "";
@@ -185,11 +342,14 @@
     right: 0;
     bottom: 0;
     background-image: $color-linear-gradient-secondary;
+    //del
+    // border-radius: 12px;
   }
 
   img {
     object-fit: cover;
     height: 100%;
     width: 100%;
+    // border-radius: 12px;
   }
 }

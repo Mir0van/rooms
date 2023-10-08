@@ -1,4 +1,24 @@
 .motivation {
-  // del
-  position: static;
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity $trans-default, visibility $trans-default;
+
+  // добавить в разметку к классу motivation класс motivation--visible если нужно постоянное отображение
+  &--visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+  }
+
+  .motivation__text {
+    @include font-values(700, 14px, 1.5, $color-default-white);
+    background-color: $color-coral;
+    display: flex;
+    align-items: center;
+    padding-left: 17px;
+    padding-right: 4px;
+    border-radius: 3px 0 0 3px;
+  }
 }

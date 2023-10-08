@@ -15,7 +15,8 @@
     "build": "gulp build",
     "dev": "gulp dev",
     "start": "gulp start",
-    "webp": "gulp webp"
+    "webp": "gulp webp",
+    "deploy": "gulp build && gh-pages -d build"
   },
   "editorconfig-cli": [
     "*.json",
