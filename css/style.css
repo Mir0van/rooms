@@ -761,6 +761,9 @@ button,
   padding: 24px;
   padding-bottom: 22px;
   border-radius: 12px;
+  overflow: hidden;
+  -webkit-clip-path: polygon(0);
+  clip-path: polygon(0);
   position: relative;
 }
 
