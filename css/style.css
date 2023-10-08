@@ -386,14 +386,6 @@ template {
 
 @font-face {
   font-display: swap;
-  font-family: "Rouble";
-  font-style: normal;
-  font-weight: 400;
-  src: url("../fonts/rouble.woff2") format("woff2"), url("../fonts/rouble.woff") format("woff");
-}
-
-@font-face {
-  font-display: swap;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
@@ -613,14 +605,6 @@ button,
   flex-grow: 0;
 }
 
-.rouble {
-  font-family: "Rouble", "Arial", sans-serif;
-  /* stylelint-disable */
-  text-transform: lowercase !important;
-  font-weight: 400 !important;
-  /* stylelint-enable */
-}
-
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -683,13 +667,12 @@ button,
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  -webkit-transition: background-color 0.3s ease, color 0.3s ease, outline ease;
-  transition: background-color 0.3s ease, color 0.3s ease, outline ease;
+  -webkit-transition: background-color 0.3s ease, color 0.3s ease, outline 0.3s ease, opacity 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, outline 0.3s ease, opacity 0.3s ease;
 }
 
-.btn:disabled {
-  opacity: 0.5;
-  pointer-events: none;
+.btn--disabled {
+  opacity: 0.6;
 }
 
 .btn:active {
@@ -729,8 +712,8 @@ button,
   left: 0;
   right: 0;
   height: 100vh;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(222, 237, 255, 0.6)), to(rgba(166, 204, 250, 0.5))), url("../img/svg/background-overlay.svg") no-repeat center/cover;
-  background: linear-gradient(180deg, rgba(222, 237, 255, 0.6) 0%, rgba(166, 204, 250, 0.5) 100%), url("../img/svg/background-overlay.svg") no-repeat center/cover;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(222, 237, 255, 0.6)), to(rgba(166, 204, 250, 0.5))), url("../img/svg/background-overlay.svg") no-repeat 53.5% 50%/cover;
+  background: linear-gradient(180deg, rgba(222, 237, 255, 0.6) 0%, rgba(166, 204, 250, 0.5) 100%), url("../img/svg/background-overlay.svg") no-repeat 53.5% 50%/cover;
   z-index: -1;
 }
 
@@ -759,6 +742,17 @@ button,
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+  position: relative;
+}
+
+.room.is-reserved .room__wrapper {
+  pointer-events: none;
+}
+
+.room.is-reserved .room__wrapper::before {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
 }
 
 .room__wrapper {
@@ -769,6 +763,22 @@ button,
   border-radius: 12px;
   overflow: hidden;
   position: relative;
+}
+
+.room__wrapper::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  -webkit-transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .room__content-wrapper {
@@ -823,6 +833,14 @@ button,
 
 .room__title-link:active::after {
   background-color: rgba(255, 255, 255, 0);
+}
+
+.room__title-link:focus-visible {
+  outline: none;
+}
+
+.room__title-link:focus-visible::after {
+  background-color: #ffffff;
 }
 
 .room__title {
@@ -911,22 +929,75 @@ button,
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  width: 180px;
-  margin-bottom: 2px;
   -ms-grid-row: 1;
   -ms-grid-row-span: 2;
   grid-area: 1/2/3/-1;
   -ms-grid-row-align: end;
   align-self: end;
+  width: 180px;
+  margin-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
   word-break: break-all;
 }
 
+.room__button.is-pressed {
+  opacity: 0.6;
+}
+
 .room__reservation-info {
-  display: none;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #ffffff;
+  font-family: "Open Sans", "Arial", sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #010202;
+  border-radius: 0 0 12px 12px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 97px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  -webkit-transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.is-reserved .room__reservation-info {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+.room__reservation-link {
+  color: #ff4b77;
+}
+
+.room__reservation-link:active {
+  text-decoration: none;
+  color: #ff97b0;
 }
 
 .room__motivation {
-  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .room__image-wrapper {
@@ -958,7 +1029,37 @@ button,
 }
 
 .motivation {
-  position: static;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  -webkit-transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.motivation--visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+.motivation .motivation__text {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #ffffff;
+  background-color: #ff7647;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-left: 17px;
+  padding-right: 4px;
+  border-radius: 3px 0 0 3px;
 }
 
 /* @mixin hover-focus {
@@ -1009,6 +1110,11 @@ button,
 
   .main-header {
     padding-top: 15px;
+  }
+
+  .rooms::before {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(222, 237, 255, 0.6)), to(rgba(166, 204, 250, 0.5))), url("../img/svg/background-overlay-tablet.svg") no-repeat center/cover;
+    background: linear-gradient(180deg, rgba(222, 237, 255, 0.6) 0%, rgba(166, 204, 250, 0.5) 100%), url("../img/svg/background-overlay-tablet.svg") no-repeat center/cover;
   }
 
   .rooms__list {
@@ -1064,6 +1170,10 @@ button,
     width: 100%;
     margin-bottom: 0;
   }
+
+  .room__reservation-info {
+    height: 161px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -1078,6 +1188,11 @@ button,
 
   .main-header__wrapper h1 {
     font-size: 24px;
+  }
+
+  .rooms::before {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(222, 237, 255, 0.6)), to(rgba(166, 204, 250, 0.5))), url("../img/svg/background-overlay-mobile.svg") no-repeat center/cover;
+    background: linear-gradient(180deg, rgba(222, 237, 255, 0.6) 0%, rgba(166, 204, 250, 0.5) 100%), url("../img/svg/background-overlay-mobile.svg") no-repeat center/cover;
   }
 
   .rooms__list {
@@ -1132,6 +1247,10 @@ button,
     font-size: 14px;
     padding-top: 8px;
   }
+
+  .room__reservation-info {
+    height: 150px;
+  }
 }
 
 @media (hover: hover) {
@@ -1139,7 +1258,20 @@ button,
     background-color: #d8003f;
   }
 
+  .room:not(.is-reserved):hover:not(.focus-visible) .room__motivation {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+  }
+
   .room__title-link:hover::after {
     background-color: #ffffff;
+  }
+
+  .room__reservation-link:hover {
+    text-decoration: underline;
   }
 }
