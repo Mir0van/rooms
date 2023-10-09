@@ -603,7 +603,7 @@ button,
   top: 0;
   left: 0;
   right: 0;
-  min-height: 100vh;
+  bottom: 0;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(222, 237, 255, 0.6)), to(rgba(166, 204, 250, 0.5))), url("../img/svg/background-overlay.svg") no-repeat 53.5% 50%/cover;
   background: linear-gradient(180deg, rgba(222, 237, 255, 0.6) 0%, rgba(166, 204, 250, 0.5) 100%), url("../img/svg/background-overlay.svg") no-repeat 53.5% 50%/cover;
   z-index: -1;
