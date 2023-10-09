@@ -18,13 +18,14 @@
   &--centred {
     justify-content: center;
 
+    // про background-attachment знаю, не использую т.к. нет поддержки на ios
     &::before {
       content: "";
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      bottom: 0;
+      min-height: 100vh;
       background: $color-linear-gradient, url("../img/svg/background-overlay.svg") no-repeat 53.5% 50% / cover;
       z-index: -1;
 
