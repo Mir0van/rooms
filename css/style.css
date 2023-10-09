@@ -834,8 +834,8 @@ button,
 
 .room__title-link:focus-visible {
   outline: none;
-  -webkit-text-decoration: underline 1px transparent;
-  text-decoration: underline 1px transparent;
+  -webkit-text-decoration: underline 1px #ffffff;
+  text-decoration: underline 1px #ffffff;
 }
 
 .room__title {
