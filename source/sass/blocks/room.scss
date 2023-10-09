@@ -100,43 +100,28 @@
 
   margin-bottom: 10px;
   position: relative;
-
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: 4px;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background-color: rgb($color-default-white, 0);
-    z-index: 1;
-    transition: background-color $trans-default;
-  }
+  text-decoration: underline 1px transparent;
+  text-underline-position: under;
+  text-underline-offset: -4px;
+  transition: text-decoration $trans-default;
 
   @media (hover: hover) {
-    &:hover {
-      &::after {
-        background-color: $color-default-white;
-      }
+    &:hover:not(:active) {
+      text-decoration: underline 1px $color-default-white;
     }
   }
 
   &:active {
+    text-decoration: underline 1px transparent;
+
     .room__title {
       color: rgb($color-default-white, 50%);
-    }
-
-    &::after {
-      background-color: rgb($color-default-white, 0);
     }
   }
 
   &:focus-visible {
     outline: none;
-
-    &::after {
-      background-color: $color-default-white;
-    }
+    text-decoration: underline 1px $color-default-white;
   }
 }
 
