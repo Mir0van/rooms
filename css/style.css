@@ -1229,7 +1229,7 @@ button,
     pointer-events: all;
   }
 
-  .room__title-link:hover {
+  .room__title-link:hover:not(:active) {
     -webkit-text-decoration: underline 1px #ffffff;
     text-decoration: underline 1px #ffffff;
   }
