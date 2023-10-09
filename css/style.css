@@ -813,27 +813,23 @@ button,
   align-self: start;
   margin-bottom: 10px;
   position: relative;
+  -webkit-text-decoration: underline 1px transparent;
+  text-decoration: underline 1px transparent;
+  text-underline-position: under;
+  text-underline-offset: -4px;
+  -webkit-transition: -webkit-text-decoration 0.3s ease;
+  transition: -webkit-text-decoration 0.3s ease;
+  transition: text-decoration 0.3s ease;
+  transition: text-decoration 0.3s ease, -webkit-text-decoration 0.3s ease;
 }
 
-.room__title-link::after {
-  content: "";
-  position: absolute;
-  bottom: 4px;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background-color: rgba(255, 255, 255, 0);
-  z-index: 1;
-  -webkit-transition: background-color 0.3s ease;
-  transition: background-color 0.3s ease;
+.room__title-link:active {
+  -webkit-text-decoration: underline 1px transparent;
+  text-decoration: underline 1px transparent;
 }
 
 .room__title-link:active .room__title {
   color: rgba(255, 255, 255, 0.5);
-}
-
-.room__title-link:active::after {
-  background-color: rgba(255, 255, 255, 0);
 }
 
 .room__title-link:focus-visible {
@@ -1233,8 +1229,9 @@ button,
     pointer-events: all;
   }
 
-  .room__title-link:hover::after {
-    background-color: #ffffff;
+  .room__title-link:hover {
+    -webkit-text-decoration: underline 1px #ffffff;
+    text-decoration: underline 1px #ffffff;
   }
 
   .room__reservation-link:hover {
