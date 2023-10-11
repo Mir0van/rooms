@@ -13,7 +13,13 @@
   border-radius: 5px;
   cursor: pointer;
 
-  transition: background-color $trans-default, color $trans-default, outline $trans-default, opacity $trans-default;
+  transition:
+    background-color
+    $trans-default,
+    color $trans-default,
+    outline $trans-default,
+    opacity $trans-default,
+    box-shadow $trans-default;
 
   &--disabled {
     opacity: 0.6;
@@ -21,6 +27,7 @@
 
   @include hover {
     background-color: $color-crimson;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   }
 
   &:active {

@@ -1,8 +1,9 @@
+import {mobileChecker} from '../../utils/mobile-checker';
+import {addMobileStyles} from './mobile-styles-toggle';
+
 const rooms = document.querySelectorAll('[data-room]');
 
-const mobileChecker = () => /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-const onbuttonReservationClick = (evt) => {
+const onButtonReservationClick = (evt) => {
   const button = evt.currentTarget;
   const room = button.closest('[data-room]');
   button.classList.toggle('is-pressed');
@@ -53,7 +54,8 @@ const initReservation = () => {
     roomChild.addEventListener('click', (evt) => {
       onRoomClick(evt, buttonReservation);
     });
-    buttonReservation.addEventListener('click', onbuttonReservationClick);
+    buttonReservation.addEventListener('click', onButtonReservationClick);
+    addMobileStyles(room);
   });
 };
 

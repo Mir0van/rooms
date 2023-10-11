@@ -7,8 +7,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Modules
   // ---------------------------------
+  initReservation();
 
   window.addEventListener('load', () => {
-    initReservation();
+    // контент не участвующий в работе первого экрана
   });
 });

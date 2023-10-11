@@ -1,23 +1,11 @@
 .motivation {
-  display: flex;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transition: opacity $trans-default, visibility $trans-default;
 
-  // добавить в разметку к классу motivation класс motivation--visible если нужно постоянное отображение
-  &--visible {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: all;
-  }
-
-  img {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 100%;
-  }
+  padding-right: 36px;
+  background: url("../img/svg/icon-triangle.svg") no-repeat 100% top / 36px auto;
 }
 
 .motivation__text {
