@@ -17,7 +17,7 @@ const setMinHeight = (element, indent) => {
 
 const initMinHeight = (element) => {
   if (breakpointMobile.matches) {
-    setMinHeight(element, padding.desktop);
+    setMinHeight(element, padding.mobile);
     return;
   }
 
