@@ -5,8 +5,7 @@ const padding = {
 };
 
 const breakpointDesktop = window.matchMedia('(min-width:1280px)');
-const breakpointTabletMax = window.matchMedia('(max-width:1279px)');
-const breakpointTabletMin = window.matchMedia('(min-width:768px)');
+const breakpointTablet = window.matchMedia('(max-width:1279px)');
 const breakpointMobile = window.matchMedia('(max-width:767px)');
 
 const setMinHeight = (element, indent) => {
@@ -17,17 +16,17 @@ const setMinHeight = (element, indent) => {
 };
 
 const initMinHeight = (element) => {
-  if (breakpointDesktop.matches) {
+  if (breakpointMobile.matches) {
     setMinHeight(element, padding.desktop);
     return;
   }
 
-  if (breakpointTabletMax.matches && breakpointTabletMin.matches) {
+  if (breakpointTablet.matches) {
     setMinHeight(element, padding.tablet);
     return;
   }
 
-  if (breakpointMobile.matches) {
+  if (breakpointDesktop.matches) {
     setMinHeight(element, padding.desktop);
     return;
   }
@@ -42,21 +41,26 @@ const setBlokHeight = (element) => {
   initMinHeight(element);
   setMaxHeight(element);
 
-  breakpointDesktop.addEventListener('change', () => {
-    setMinHeight(element, padding.desktop);
+  breakpointTablet.addEventListener('change', () => {
     setMaxHeight(element);
-  });
-  breakpointTabletMin.addEventListener('change', () => {
+
+    if (breakpointDesktop.matches) {
+      setMinHeight(element, padding.desktop);
+      return;
+    }
+
     setMinHeight(element, padding.tablet);
-    setMaxHeight(element);
   });
-  breakpointTabletMax.addEventListener('change', () => {
-    setMinHeight(element, padding.tablet);
-    setMaxHeight(element);
-  });
+
   breakpointMobile.addEventListener('change', () => {
-    setMinHeight(element, padding.mobile);
     setMaxHeight(element);
+
+    if (breakpointMobile.matches) {
+      setMinHeight(element, padding.mobile);
+      return;
+    }
+
+    setMinHeight(element, padding.tablet);
   });
 };
 
