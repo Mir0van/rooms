@@ -1,5 +1,6 @@
 import {mobileChecker} from '../../utils/mobile-checker';
 import {addMobileStyles} from './mobile-styles-toggle';
+import {setBlokHeight} from './set-height';
 
 const rooms = document.querySelectorAll('[data-room]');
 
@@ -56,6 +57,7 @@ const initReservation = () => {
     });
     buttonReservation.addEventListener('click', onButtonReservationClick);
     addMobileStyles(room);
+    setBlokHeight(room);
   });
 };
 
